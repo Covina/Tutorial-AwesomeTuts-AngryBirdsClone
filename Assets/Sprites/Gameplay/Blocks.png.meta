@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ac6c5c313175473428d5fe19adee664a
-timeCreated: 1507613948
+timeCreated: 1507615403
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -25,7 +25,7 @@ TextureImporter:
     21300036: Blocks_18
     21300038: Blocks_19
     21300040: Blocks_20
-    21300042: Blocks_21
+    21300042: Brick3
     21300044: Blocks_22
     21300046: Blocks_23
     21300048: Brick2
@@ -411,7 +411,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Blocks_21
+      name: Brick3
       rect:
         serializedVersion: 2
         x: 112
