@@ -18,6 +18,7 @@ public enum GameState
 
     Start,                    
     BirdMovingToSlingshot,
+    Playing,
     Won,
     Lost
 
