@@ -66,6 +66,99 @@ public class Slingshot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+        switch(slingShotState)
+        {
+            case SlingShotState.Idle:
+
+                InitializeBird();
+                DisplaySlingshotLineRenderers();
+
+
+                // if player is touching the screen
+                if(Input.GetMouseButtonDown(0))
+                {
+                    // get coordinates for in-game to see if they are touching a bird
+                    Vector3 location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    
+                    // check if the birds location overlaps with where the user is touching the screen
+                    if (birdToThrow.GetComponent<CircleCollider2D>() == Physics2D.OverlapPoint(location))
+                    {
+                        // user is pulling the slingshot
+                        slingShotState = SlingShotState.UserPulling;
+                    }
+
+                }
+
+
+                break;
+
+
+            case SlingShotState.UserPulling:
+
+                DisplaySlingshotLineRenderers();
+
+                if(Input.GetMouseButton(0))
+                {
+                    Vector3 location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    location.z = 0f;
+
+                    // 
+                    if (Vector3.Distance(location, slingShotMiddleVector) > 1.5f)
+                    {
+                        // implement a cap for how far back the bird can be drawn
+                        var maxPosition = (location - slingShotMiddleVector).normalized * 1.5f + slingShotMiddleVector;
+
+                        birdToThrow.transform.position = maxPosition;
+
+                    } else {
+                        // set location 
+                        birdToThrow.transform.position = location;
+                    }
+
+
+                    // calculate distance between slingshot middle and bird
+                    var distance = Vector3.Distance(slingShotMiddleVector, birdToThrow.transform.position);
+
+
+                    // show the trajectory line when player has pulled back the bird
+                    DisplayTrajectoryLineRenderer(distance);
+
+                } else
+                {
+
+                    // display line renderers
+                    DisplaySlingshotLineRenderers();
+
+                    timeSinceThrown = Time.time;
+
+                    // calculate distance between slingshot middle and bird 
+                    float distance = Vector3.Distance(slingShotMiddleVector, birdToThrow.transform.position);
+
+                    if(distance > 1)
+                    {
+                        SetSlingshotLineRenderersActive(false);
+
+                        // bird was thrown
+                        slingShotState = SlingShotState.BirdFlying;
+
+                        // Throw the bird
+                        ThrowBird(distance);
+                    } else
+                    {
+                        // 
+                        birdToThrow.transform.positionTo(distance / 10, birdWaitPosition.position);
+                        InitializeBird();
+                    }
+
+
+                }
+
+                break;
+
+        }
+
+
+
 	}
 
     /// <summary>
