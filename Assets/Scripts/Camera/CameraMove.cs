@@ -14,8 +14,6 @@ public class CameraMove : MonoBehaviour {
     private Vector3 previousPosition;
 
 
-
-
 	// Use this for initialization
 	void Start () {
 		
@@ -29,43 +27,47 @@ public class CameraMove : MonoBehaviour {
         {
 
             // is the player touching the screen?
-            if(Input.GetMouseButton(0))
+            if(Input.GetMouseButtonDown(0))
             {
+
+                // track the amount of time player is touching the screen
                 timeDragStarted = Time.time;
 
+                // init drag speed at 0f
                 dragSpeed = 0f;
 
+                // set previous position to the current position
                 previousPosition = Input.mousePosition;
 
-            } else if (Input.GetMouseButton(0) && Time.time - timeDragStarted > 0.005f)
+            } else if (Input.GetMouseButton(0) && (Time.time - timeDragStarted) > 0.005f)
             {
-                // we are dragging our camera
 
                 // current touch position
-                Vector3 inputCurrentPosition = Input.mousePosition;
+                Vector3 input = Input.mousePosition;
 
                 // how far did we drag between frames
-                float deltaX = (previousPosition.x - inputCurrentPosition.x) * dragSpeed;
-                float deltaY = (previousPosition.y - inputCurrentPosition.y) * dragSpeed;
+                float deltaX = (previousPosition.x - input.x) * dragSpeed;
+                float deltaY = (previousPosition.y - input.y) * dragSpeed;
 
                 // stay within the global X position limits
                 float newX = Mathf.Clamp(transform.position.x + deltaX, 0, 14.0f);
 
                 // stay within the global Y position limits
-                float newY = Mathf.Clamp(transform.position.y + deltaX, 0, 2.7f);
+                float newY = Mathf.Clamp(transform.position.y + deltaY, 0, 0.0f);
 
                 // set the camera's new position
                 transform.position = new Vector3(newX, newY, transform.position.z);
 
-                //
-                previousPosition = Input;
+                // set previous position to the current position
+                previousPosition = input;
 
-                // slowly increase drag
+                // slowly increase drag to slow it down
                 if(dragSpeed < 0.1f)
                 {
                     dragSpeed += 0.002f;
                 }
             }
+
 
         }
 

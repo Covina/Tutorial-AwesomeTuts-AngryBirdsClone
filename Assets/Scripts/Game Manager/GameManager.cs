@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour {
         birds = new List<GameObject>(GameObject.FindGameObjectsWithTag("Bird"));
         pigs = new List<GameObject>(GameObject.FindGameObjectsWithTag("Pig"));
 
+        // disable the sling shot bands
+        slingShot.slingShotLineRenderer1.enabled = false;
+        slingShot.slingShotLineRenderer2.enabled = false;
 
     }
 	
@@ -78,6 +81,11 @@ public class GameManager : MonoBehaviour {
                 if (slingShot.slingShotState == SlingShotState.BirdFlying && (BricksBirdsPigsStoppedMoving() || Time.time - slingShot.timeSinceThrown > 5f))
                 {
                     slingShot.enabled = false;
+
+                    // disable the sling shot bands
+                    slingShot.slingShotLineRenderer1.enabled = false;
+                    slingShot.slingShotLineRenderer2.enabled = false;
+
 
                     AnimateCameraToStartPosition();
 
@@ -123,6 +131,11 @@ public class GameManager : MonoBehaviour {
 
                // enable the slingshot
                slingShot.enabled = true;
+
+               // disable the sling shot bands
+               slingShot.slingShotLineRenderer1.enabled = false;
+               slingShot.slingShotLineRenderer2.enabled = false;
+
 
                // assign which bird game object
                slingShot.birdToThrow = birds[currentBirdIndex];
@@ -213,7 +226,7 @@ public class GameManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Things to do when we know that the bird has been thrown
     /// </summary>
     private void SlingShotBirdThrown()
     {
@@ -222,6 +235,9 @@ public class GameManager : MonoBehaviour {
 
         // turn on the follow
         cameraFollow.isFollowing = true;
+
+        // Disable the trajectory lines
+        slingShot.SetTrajectoryLineRendererActive(false);
 
     }
 

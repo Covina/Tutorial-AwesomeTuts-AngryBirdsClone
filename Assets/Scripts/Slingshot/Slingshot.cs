@@ -15,19 +15,21 @@ public class Slingshot : MonoBehaviour {
     public Transform slingShotLeftOrigin, slingShotRightOrigin;
 
 
-    //
+    // The sling shot bands
     public LineRenderer slingShotLineRenderer1;
     public LineRenderer slingShotLineRenderer2;
+
+    // The trajectory flight path of bird
     public LineRenderer slingShotTrajectoryLineRenderer;
 
     // Bird to throw
     [HideInInspector]
     public GameObject birdToThrow;
 
-    // 
+    // Staging position for next bird
     public Transform birdWaitPosition;
 
-    //
+    // Starting throw speed
     public float throwSpeed;
 
     [HideInInspector]
@@ -208,7 +210,7 @@ public class Slingshot : MonoBehaviour {
     /// Set enabled status for trajectory line renderer
     /// </summary>
     /// <param name="active"></param>
-    private void SetTrajectoryLineRendererActive(bool active)
+    public void SetTrajectoryLineRendererActive(bool active)
     {
         slingShotTrajectoryLineRenderer.enabled = active;
     }

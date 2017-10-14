@@ -65,6 +65,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4172884733252118}
+  - component: {fileID: 114576018627487626}
   m_Layer: 0
   m_Name: Slingshot
   m_TagString: Untagged
@@ -171,7 +172,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254233542187220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0945, y: -2.466, z: 0}
+  m_LocalPosition: {x: -3.36, y: -2.466, z: 0}
   m_LocalScale: {x: 0.52585804, y: 0.52585804, z: 0.52585804}
   m_Children:
   - {fileID: 4204434840767422}
@@ -276,6 +277,27 @@ Transform:
   m_Father: {fileID: 4172884733252118}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114576018627487626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254233542187220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c07b6805ecafef43b18f8f2eab403f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slingShotState: 0
+  slingShotLeftOrigin: {fileID: 4577778917280150}
+  slingShotRightOrigin: {fileID: 4255904199803272}
+  slingShotLineRenderer1: {fileID: 120446328334238436}
+  slingShotLineRenderer2: {fileID: 120844836819686584}
+  slingShotTrajectoryLineRenderer: {fileID: 120582009866908336}
+  birdToThrow: {fileID: 0}
+  birdWaitPosition: {fileID: 4329059564938332}
+  throwSpeed: 10
+  timeSinceThrown: 0
 --- !u!120 &120446328334238436
 LineRenderer:
   m_ObjectHideFlags: 1

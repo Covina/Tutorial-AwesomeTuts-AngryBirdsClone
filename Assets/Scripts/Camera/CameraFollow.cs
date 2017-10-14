@@ -21,8 +21,6 @@ public class CameraFollow : MonoBehaviour {
     private float maxCameraX = 14f;
 
 
-
-
 	// 
 	void Awake () {
 
@@ -37,8 +35,9 @@ public class CameraFollow : MonoBehaviour {
         // are we in the following state?
         if(isFollowing == true)
         {
+
             // do we have a bird to follow
-            if(birdToFollow != null)
+            if (birdToFollow != null)
             {
                 // get bird position
                 var birdPosition = birdToFollow.position;
